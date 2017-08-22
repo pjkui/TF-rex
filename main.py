@@ -5,6 +5,7 @@ import numpy as np
 import numpy.random as rnd
 import tensorflow as tf
 import os
+import shutil
 
 ## RL Constants
 width = 150
@@ -24,8 +25,9 @@ FLAGS = tf.app.flags.FLAGS
 def check_path_existance(path):
     if not path: return
     if os.path.exists(path):
-        print "PATH FOR STORING RESULTS ALREADY EXISTS!"
-        exit(1)
+        shutil.rmtree(path)
+        # print ("PATH FOR STORING RESULTS ALREADY EXISTS!")
+        # exit(1)
     os.makedirs(path)
 
 def setup_summary():
@@ -60,7 +62,7 @@ def main(_):
     network.update_target_network()
 
     for epoch in range(num_epoch):
-        print "\nEpoch: ", epoch
+        print ("\nEpoch: ", epoch)
 
         state,_,crashed = game_agent.start_game()
         state = processor.process(state)
@@ -70,7 +72,7 @@ def main(_):
 
             action = network.act(state)
             state_next, reward, crashed = game_agent.do_action(action)
-            print "action: {}\t crashed: {}".format(GameAgent.actions[action], crashed)
+            print ("action: {}\t crashed: {}".format(GameAgent.actions[action], crashed))
             state_next = processor.process(state_next)
             network.remember(state, action, reward, state_next, crashed)
 
