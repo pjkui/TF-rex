@@ -1,0 +1,6 @@
+model_checkpoint_path: "tf-rex.ckpt-999"
+all_model_checkpoint_paths: "tf-rex.ckpt-199"
+all_model_checkpoint_paths: "tf-rex.ckpt-399"
+all_model_checkpoint_paths: "tf-rex.ckpt-599"
+all_model_checkpoint_paths: "tf-rex.ckpt-799"
+all_model_checkpoint_paths: "tf-rex.ckpt-999"
