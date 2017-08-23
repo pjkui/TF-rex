@@ -10,7 +10,7 @@ import shutil
 ## RL Constants
 width = 150
 height = 50
-num_epoch = 1000
+num_epoch = 100000
 len_epoch = 100000
 num_actions = len(GameAgent.actions)
 
@@ -19,16 +19,17 @@ tf.app.flags.DEFINE_string("path", "./logs/", "Path to store session checkpoints
 tf.app.flags.DEFINE_integer("checkpoint_hz", 200, "Creating a checkpoint every x epochs")
 tf.app.flags.DEFINE_boolean("training", True, "Train a new model")
 tf.app.flags.DEFINE_boolean("visualize", True, "Visualize")
-tf.app.flags.DEFINE_string("checkpoint_name", "./logs/checkpoints/tf-rex.ckpt-2", "Name of a checkpoint to load")
+tf.app.flags.DEFINE_string("checkpoint_name", "./logs/tf-rex.ckpt-999", "Name of a checkpoint to load")
 FLAGS = tf.app.flags.FLAGS
 
 def check_path_existance(path):
     if not path: return
     if os.path.exists(path):
-        shutil.rmtree(path)
-        # print ("PATH FOR STORING RESULTS ALREADY EXISTS!")
+        # shutil.rmtree(path)
+        print ("PATH FOR STORING RESULTS ALREADY EXISTS!")
         # exit(1)
-    os.makedirs(path)
+    else:
+        os.makedirs(path)
 
 def setup_summary():
     with tf.variable_scope("statistics"):
