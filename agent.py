@@ -78,4 +78,5 @@ class DDQNAgent:
 
     def load(self, checkpoint_name):
         self.saver.restore(self.session, checkpoint_name)
-        print ("Model resored")
+        self.explore_prob = 0.5        
+        print ("Model resored %s",self.explore_prob)

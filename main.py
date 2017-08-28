@@ -62,7 +62,7 @@ def main(_):
         network.load(FLAGS.checkpoint_name)
     network.update_target_network()
 
-    for epoch in range(num_epoch):
+    for epoch in range(num_epoch)[999:]:
         print ("\nEpoch: ", epoch)
 
         state,_,crashed = game_agent.start_game()
